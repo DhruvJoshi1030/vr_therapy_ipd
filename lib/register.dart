@@ -22,7 +22,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       // User has been registered
       print("User registered: ${userCredential.user?.email}");
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => LandingScreen()));
+          context, MaterialPageRoute(builder: (context) => HomePage()));
     } catch (e) {
       print("Error registering user: $e");
     }

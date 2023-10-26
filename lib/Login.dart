@@ -3,83 +3,76 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:vr_therapy_ipd/onboarding.dart';
 import 'package:vr_therapy_ipd/register.dart';
 
-class LoginScreen extends StatefulWidget {
+
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _LoginPageState createState() => _LoginPageState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  String _email = "";
-  String _password = "";
-  String _error = "";
+class _LoginPageState extends State<LoginPage> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
-  Future<void> _signIn(BuildContext context) async {
-    if (_formKey.currentState!.validate()) {
-      try {
-        await _auth.signInWithEmailAndPassword(
-            email: _email, password: _password);
-        Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => LandingScreen()));
-      } catch (e) {
-        setState(() {
-          _error = "Invalid email or password.";
-        });
-      }
+  Future<void> _signInWithEmailAndPassword(
+      String email, String password) async {
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      // Navigate to the next screen upon successful login
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => HomePage()));
+    } catch (e) {
+      print("Error: $e");
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Login Screen")),
+      appBar: AppBar(
+        title: Text('Login'),
+      ),
       body: Center(
-        child: Form(
-          key: _formKey,
+        child: Padding(
+          padding: EdgeInsets.all(16.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              TextFormField(
-                decoration: InputDecoration(labelText: "Email"),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return "Please enter your email.";
-                  }
-                  return null;
-                },
-                onChanged: (value) => _email = value,
+              TextField(
+                controller: _emailController,
+                decoration: InputDecoration(
+                  labelText: 'Email',
+                ),
               ),
-              TextFormField(
-                decoration: InputDecoration(labelText: "Password"),
-                obscureText: true,
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return "Please enter your password.";
-                  }
-                  return null;
-                },
-                onChanged: (value) => _password = value,
+              SizedBox(height: 20.0),
+              TextField(
+                controller: _passwordController,
+                obscureText: true, // Hide password
+                decoration: InputDecoration(
+                  labelText: 'Password',
+                ),
               ),
-              ElevatedButton(
-                onPressed: () => _signIn(context),
-                child: Text("Log In"),
-              ),
-              SizedBox(
-                height: 15,
-              ),
+              SizedBox(height: 20.0),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => RegistrationScreen()));
+                  final String email = _emailController.text.trim();
+                  final String password = _passwordController.text.trim();
+                  _signInWithEmailAndPassword(email, password);
                 },
-                child: Text("SIGN UP "),
+                child: Text('Login'),
               ),
-              Text(
-                _error,
-                style: TextStyle(color: Colors.red),
+              SizedBox(height: 10.0), // Add spacing
+              TextButton(
+                onPressed: () {
+                  // Navigate to the registration screen when the button is pressed
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => RegistrationScreen()));
+                },
+                child: Text('Click here to sign up'),
               ),
             ],
           ),
