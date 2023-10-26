@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:vr_therapy_ipd/onboarding.dart';
+import 'package:vr_therapy_ipd/register.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -17,8 +18,10 @@ class _LoginScreenState extends State<LoginScreen> {
   Future<void> _signIn(BuildContext context) async {
     if (_formKey.currentState!.validate()) {
       try {
-        await _auth.signInWithEmailAndPassword(email: _email, password: _password);
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LandingScreen()));
+        await _auth.signInWithEmailAndPassword(
+            email: _email, password: _password);
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => LandingScreen()));
       } catch (e) {
         setState(() {
           _error = "Invalid email or password.";
@@ -61,6 +64,18 @@ class _LoginScreenState extends State<LoginScreen> {
               ElevatedButton(
                 onPressed: () => _signIn(context),
                 child: Text("Log In"),
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => RegistrationScreen()));
+                },
+                child: Text("SIGN UP "),
               ),
               Text(
                 _error,
