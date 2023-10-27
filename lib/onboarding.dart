@@ -1,6 +1,9 @@
 import 'package:flashy_tab_bar2/flashy_tab_bar2.dart';
 import 'package:flutter/material.dart';
 import 'package:vr_therapy_ipd/colors.dart';
+import 'package:vr_therapy_ipd/features/appointment/appointment.dart';
+import 'package:vr_therapy_ipd/features/progresstracker.dart';
+import 'package:vr_therapy_ipd/features/simulation.dart';
 import 'package:vr_therapy_ipd/profile.dart';
 
 class HomePage extends StatefulWidget {
@@ -12,10 +15,13 @@ class _HomePageState extends State<HomePage> {
   int _currentIndex = 0;
 
   final List<Widget> _pages = [
-    // GroupPage(),
-    // FeedPage(),
-    // NotesScreen(),
+    // bookAppointment()
+    // simulations()
+    // progresstracking()
+    AppointmentPage(),
+    ProgressTracker(),
     ProfilePage(),
+    Simulatioinscreen(),
   ];
 
   @override
@@ -41,19 +47,22 @@ class _HomePageState extends State<HomePage> {
         items: [
           FlashyTabBarItem(
             icon: Icon(Icons.groups, color: AppColors.white),
-            title: Text('Groups', style: TextStyle(color: AppColors.white)),
+            title: Text('Book an Appointment',
+                style: TextStyle(color: AppColors.white)),
           ),
           FlashyTabBarItem(
             icon: Icon(Icons.home, color: AppColors.white),
-            title: Text('Feed', style: TextStyle(color: AppColors.white)),
+            title: Text('Progress Tracking',
+                style: TextStyle(color: AppColors.white)),
           ),
           FlashyTabBarItem(
             icon: Icon(Icons.emoji_emotions, color: AppColors.white),
-            title: Text('Notes', style: TextStyle(color: AppColors.white)),
+            title: Text('ChatBot', style: TextStyle(color: AppColors.white)),
           ),
           FlashyTabBarItem(
             icon: Icon(Icons.more_horiz, color: AppColors.white),
-            title: Text('More', style: TextStyle(color: AppColors.white)),
+            title:
+                Text('Simulations', style: TextStyle(color: AppColors.white)),
           ),
         ],
       ),
