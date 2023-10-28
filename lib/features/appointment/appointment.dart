@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:vr_therapy_ipd/colors.dart';
 import 'package:vr_therapy_ipd/styleCard.dart';
-
+import 'package:intl/intl.dart';
 class AppointmentPage extends StatefulWidget {
   @override
   _AppointmentPageState createState() => _AppointmentPageState();
@@ -31,52 +31,68 @@ class _AppointmentPageState extends State<AppointmentPage> {
       });
   }
 
-  void _showBottomSheet(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      builder: (BuildContext context) {
-        return Container(
-          padding: EdgeInsets.all(16),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                'Book An appointment',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+void _showBottomSheet(BuildContext context) {
+  showModalBottomSheet(
+    context: context,
+    builder: (BuildContext context) {
+      return Container(
+        padding: EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              'Book An Appointment',
+              style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.blue),
+            ),
+            SizedBox(height: 20),
+            Text(
+              'Selected Date: ${DateFormat('yyyy-MM-dd').format(DateTime.now())}',
+              style: TextStyle(fontSize: 18, color: Colors.black),
+            ),
+            ElevatedButton(
+              onPressed: () => _selectDate(context),
+              child: Text('Select Date', style: TextStyle(color: Colors.white)),
+              style: ElevatedButton.styleFrom(
+                primary: Colors.blue,
               ),
-              SizedBox(height: 20),
-              Text(
-                'Selected Date: ${DateTime.now().year}-${DateTime.now().month}-${DateTime.now().day}',
+            ),
+            SizedBox(height: 20),
+            Text(
+              'Selected Time: ${TimeOfDay.now().format(context)}',
+              style: TextStyle(fontSize: 18, color: Colors.black),
+            ),
+            ElevatedButton(
+              onPressed: () => _selectTime(context),
+              child: Text('Select Time', style: TextStyle(color: Colors.white)),
+              style: ElevatedButton.styleFrom(
+                primary: Colors.blue,
               ),
-              ElevatedButton(
-                onPressed: () => _selectDate(context),
-                child: Text('Select date'),
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                // Add code to handle the booking here
+                // For example, you can send the selected date and time to a database or print it to the console.
+                print(
+                    'Appointment booked on ${DateFormat('yyyy-MM-dd').format(DateTime.now())} at ${TimeOfDay.now().format(context)}');
+                Navigator.pop(context);
+              },
+              child: Text('Book Appointment', style: TextStyle(color: Colors.white)),
+              style: ElevatedButton.styleFrom(
+                primary: Colors.green,
               ),
-              SizedBox(height: 20),
-              Text(
-                'Selected Time: ${TimeOfDay.now().hour}:${TimeOfDay.now().minute}',
-              ),
-              ElevatedButton(
-                onPressed: () => _selectTime(context),
-                child: Text('Select time'),
-              ),
-              SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () {
-                  // Add code to handle the booking here
-                  // For example, you can send the selected date and time to a database or print it to the console.
-                  print(
-                      'Appointment booked on ${DateTime.now().year}-${DateTime.now().month}-${DateTime.now().day} at ${TimeOfDay.now().hour}:${TimeOfDay.now().minute}');
-                  Navigator.pop(context);
-                },
-                child: Text('Book Appointment'),
-              ),
-            ],
-          ),
-        );
-      },
-    );
-  }
+            ),
+          ],
+        ),
+      );
+    },
+  );
+}
+
 
   @override
   List<Doctor> doctors = [

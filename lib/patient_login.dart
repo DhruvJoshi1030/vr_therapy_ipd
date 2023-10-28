@@ -4,14 +4,14 @@ import 'package:vr_therapy_ipd/onboarding.dart';
 import 'package:vr_therapy_ipd/register.dart';
 
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class LoginPageP extends StatefulWidget {
+  const LoginPageP({super.key});
 
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _LoginPagePState createState() => _LoginPagePState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _LoginPagePState extends State<LoginPageP> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
@@ -70,7 +70,7 @@ class _LoginPageState extends State<LoginPage> {
                 onPressed: () {
                   // Navigate to the registration screen when the button is pressed
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => RegistrationScreen()));
+                      MaterialPageRoute(builder: (context) => RegistrationScreenP()));
                 },
                 child: Text('Click here to sign up'),
               ),

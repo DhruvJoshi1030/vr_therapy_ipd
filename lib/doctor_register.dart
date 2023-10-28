@@ -3,12 +3,12 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:vr_therapy_ipd/onboarding.dart';
 
-class RegistrationScreenP extends StatefulWidget {
+class RegistrationScreen extends StatefulWidget {
   @override
-  _RegistrationScreenPState createState() => _RegistrationScreenPState();
+  _RegistrationScreenState createState() => _RegistrationScreenState();
 }
 
-class _RegistrationScreenPState extends State<RegistrationScreenP> {
+class _RegistrationScreenState extends State<RegistrationScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 

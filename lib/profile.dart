@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:vr_therapy_ipd/Login.dart';
+import 'package:vr_therapy_ipd/patient_login.dart';
 import 'package:vr_therapy_ipd/colors.dart';
 import 'package:vr_therapy_ipd/styleCard.dart';
 
@@ -85,7 +85,7 @@ class ProfilePage extends StatelessWidget {
               title: "Profile",
               img: "assets/icons/profile.svg",
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPageP()));
               },
               bgColor: AppColors.primary,
               textColor: AppColors.white,
@@ -99,7 +99,7 @@ class ProfilePage extends StatelessWidget {
               title: "Predict",
               img: "assets/icons/predictt.svg",
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPageP()));
               },
               bgColor: AppColors.primary,
               textColor: AppColors.white,
@@ -112,7 +112,7 @@ class ProfilePage extends StatelessWidget {
               title: "Notification",
               img: "assets/icons/notfication.svg",
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPageP()));
               },
               bgColor: AppColors.primary,
               textColor: AppColors.white,
@@ -136,7 +136,7 @@ class ProfilePage extends StatelessWidget {
             StyleCard(
               title: "Help Centre",
               img: "assets/icons/question.svg",
-              onTap: () {Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
+              onTap: () {Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPageP()));
               },
               bgColor: AppColors.primary,
               textColor: AppColors.white,
@@ -149,7 +149,7 @@ class ProfilePage extends StatelessWidget {
               title: "Log Out",
               img: "assets/icons/logout.svg",
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPageP()));
               },
               bgColor: AppColors.primary,
               textColor: AppColors.white,

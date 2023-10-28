@@ -19,9 +19,9 @@ class _HomePageState extends State<HomePage> {
     // simulations()
     // progresstracking()
     AppointmentPage(),
-    ProgressTracker(),
+    ProgressTrackingPage(),
     ProfilePage(),
-    Simulatioinscreen(),
+    VideoPlayerScreen(),
   ];
 
   @override

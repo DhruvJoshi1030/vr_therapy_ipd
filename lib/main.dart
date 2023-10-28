@@ -1,6 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:vr_therapy_ipd/Login.dart';
+import 'package:vr_therapy_ipd/entrypage.dart';
+import 'package:vr_therapy_ipd/patient_login.dart';
+import 'package:vr_therapy_ipd/features/progresstracker.dart';
+import 'package:vr_therapy_ipd/features/simulation.dart';
 import 'package:vr_therapy_ipd/firebase_options.dart';
 
 void main() async {
@@ -19,7 +22,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: LoginPage(),
+      home: EntryPage(),
     );
   }
 }
