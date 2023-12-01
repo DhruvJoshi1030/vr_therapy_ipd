@@ -1,8 +1,8 @@
 
 import 'package:flutter/material.dart';
-import 'package:vr_therapy_ipd/patient_login.dart';
-import 'package:vr_therapy_ipd/colors.dart';
-import 'package:vr_therapy_ipd/styleCard.dart';
+import 'package:vr_therapy_ipd/patient/patient_login.dart';
+import 'package:vr_therapy_ipd/design/colors.dart';
+import 'package:vr_therapy_ipd/design/styleCard.dart';
 
 class ProfilePage extends StatelessWidget {
   @override

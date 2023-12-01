@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:vr_therapy_ipd/doctor_login.dart';
-import 'package:vr_therapy_ipd/onboarding.dart';
-import 'package:vr_therapy_ipd/patient_login.dart';
+import 'package:vr_therapy_ipd/doctor/doctor_login.dart';
+import 'package:vr_therapy_ipd/patient/onboarding.dart';
+import 'package:vr_therapy_ipd/patient/patient_login.dart';
 
 class EntryPage extends StatefulWidget {
   const EntryPage({super.key});
@@ -25,7 +25,7 @@ class _EntryPageState extends State<EntryPage> {
                 Navigator.pushReplacement(context,
                     MaterialPageRoute(builder: (context) => LoginPage()));
               },
-              child: Text('I AM A DOCTORE'),
+              child: Text('I AM A DOCTOR'),
             ),
             SizedBox(
               height: 15,

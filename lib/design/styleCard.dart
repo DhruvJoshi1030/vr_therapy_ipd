@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 //import 'package:flutter_svg/flutter_svg.dart';
 
-import '../colors.dart';
+import 'colors.dart';
 
 class StyleCard extends StatelessWidget {
   final String title;

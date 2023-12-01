@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:vr_therapy_ipd/onboarding.dart';
+import 'package:vr_therapy_ipd/patient/onboarding.dart';
 
 class RegistrationScreenP extends StatefulWidget {
   @override

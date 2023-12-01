@@ -13,7 +13,9 @@ dependencies:
   flashy_tab_bar2: ^0.0.6
   flutter:
     sdk: flutter
+  flutter_svg: ^2.0.9
   intl: ^0.18.1
+  provider: ^6.0.5
   video_player: ^2.7.2
   webview_flutter: ^4.4.1
   youtube_player_flutter: ^8.1.2

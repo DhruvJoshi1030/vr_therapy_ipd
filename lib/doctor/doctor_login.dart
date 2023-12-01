@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:vr_therapy_ipd/doctor_register.dart';
-import 'package:vr_therapy_ipd/onboarding.dart';
-import 'package:vr_therapy_ipd/register.dart';
+import 'package:vr_therapy_ipd/doctor/doc_onboarding.dart';
+import 'package:vr_therapy_ipd/doctor/doctor_register.dart';
+import 'package:vr_therapy_ipd/doctor/doctor_session.dart';
+import 'package:vr_therapy_ipd/patient/onboarding.dart';
+import 'package:vr_therapy_ipd/patient/register.dart';
 
 
 class LoginPage extends StatefulWidget {
@@ -25,7 +27,7 @@ class _LoginPageState extends State<LoginPage> {
       );
       // Navigate to the next screen upon successful login
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => HomePage()));
+          context, MaterialPageRoute(builder: (context) => HomePageD()));
     } catch (e) {
       print("Error: $e");
     }

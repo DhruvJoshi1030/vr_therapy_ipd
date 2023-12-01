@@ -1,10 +1,11 @@
 import 'package:flashy_tab_bar2/flashy_tab_bar2.dart';
 import 'package:flutter/material.dart';
-import 'package:vr_therapy_ipd/colors.dart';
-import 'package:vr_therapy_ipd/features/appointment/appointment.dart';
-import 'package:vr_therapy_ipd/features/progresstracker.dart';
-import 'package:vr_therapy_ipd/features/simulation.dart';
-import 'package:vr_therapy_ipd/profile.dart';
+import 'package:vr_therapy_ipd/design/colors.dart';
+import 'package:vr_therapy_ipd/patient/features/appointment/appointment.dart';
+import 'package:vr_therapy_ipd/patient/features/progresstracker.dart';
+import 'package:vr_therapy_ipd/patient/features/simulation.dart';
+import 'package:vr_therapy_ipd/patient/profile.dart';
+import 'package:vr_therapy_ipd/patient/questionnaire.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -18,7 +19,7 @@ class _HomePageState extends State<HomePage> {
     // bookAppointment()
     // simulations()
     // progresstracking()
-    AppointmentPage(),
+    QuestionnairePage(),
     ProgressTrackingPage(),
     ProfilePage(),
     VideoPlayerScreen(),
