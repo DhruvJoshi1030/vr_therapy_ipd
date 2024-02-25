@@ -145,7 +145,7 @@ class _QuestionnairePageState extends State<QuestionnairePage> {
                 onPressed: _selectedAnswer != null ? _nextQuestion : null,
                 child: Text('Next'),
                 style: ElevatedButton.styleFrom(
-                  primary: AppColors
+                  backgroundColor: AppColors
                       .secondary, // Change this color to the color you desire
                 ),
               ),

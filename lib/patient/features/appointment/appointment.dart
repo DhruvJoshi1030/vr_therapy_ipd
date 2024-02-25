@@ -66,7 +66,7 @@ class _AppointmentPageState extends State<AppointmentPage> {
                 child:
                     Text('Select Date', style: TextStyle(color: Colors.white)),
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.blue,
+                  backgroundColor: Colors.blue,
                 ),
               ),
               SizedBox(height: 20),
@@ -79,7 +79,7 @@ class _AppointmentPageState extends State<AppointmentPage> {
                 child:
                     Text('Select Time', style: TextStyle(color: Colors.white)),
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.blue,
+                  backgroundColor: Colors.blue,
                 ),
               ),
               SizedBox(height: 20),
@@ -108,7 +108,7 @@ class _AppointmentPageState extends State<AppointmentPage> {
                 child: Text('Book Appointment',
                     style: TextStyle(color: Colors.white)),
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.green,
+                  backgroundColor: Colors.green,
                 ),
               ),
             ],
