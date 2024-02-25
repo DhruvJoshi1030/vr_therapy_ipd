@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+
 //import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -82,20 +83,9 @@ class _QuestionnairePageState extends State<QuestionnairePage> {
   String userEmail = "";
 
   List<String?> selectedAnswers = [];
-  // Map<String, dynamic> responseData = {
-  //   "predictions": [
-  //     {
-  //       "classes": ["Advanced", "Beginner", "Intermediate"],
-  //       "scores": [
-  //         0.9919021129608154,
-  //         0.001683753449469805,
-  //         0.00641406886279583
-  //       ]
-  //     }
-  //   ]
-  // };
+  
 
-  // String highestLabel = getHighestLabel(responseData);
+  
 
   void _nextQuestion() {
     setState(() {
@@ -108,29 +98,14 @@ class _QuestionnairePageState extends State<QuestionnairePage> {
         selectedAnswers.add(_selectedAnswer);
         print('Selected Answers: $selectedAnswers'); // Print selected answers
 
-        // Call the predict function with the selected answers
-      //  predict();
-
-       // printPredictionResponse(responseData);
-        // Get the highest label as a string
-      //  String highestLabel = printHighestLabel(responseData);
+      
         final user = FirebaseAuth.instance.currentUser;
         if (user != null) {
           setState(() {
             userEmail = user.email!;
           });
         }
-       // addUserToGroupChat(givePred(selectedAnswers), '', userEmail);
-
-        // Use the returned label as needed
-        //print(givePred(selectedAnswers)); // Output: Highest Label: Advanced
-
-        // Use the returned label as needed
-        //print('Highest Label: $highestLabel');
-
-        // Navigate to Groups.dart
-        // Navigator.push(
-        //     context, MaterialPageRoute(builder: (context) => GroupPage()));
+      
       }
     });
   }

@@ -2,6 +2,7 @@ import 'package:flashy_tab_bar2/flashy_tab_bar2.dart';
 import 'package:flutter/material.dart';
 import 'package:vr_therapy_ipd/design/colors.dart';
 import 'package:vr_therapy_ipd/patient/features/appointment/appointment.dart';
+import 'package:vr_therapy_ipd/patient/features/appointment/moveon.dart';
 import 'package:vr_therapy_ipd/patient/features/progresstracker.dart';
 import 'package:vr_therapy_ipd/patient/features/simulation.dart';
 import 'package:vr_therapy_ipd/patient/profile.dart';
@@ -19,10 +20,10 @@ class _HomePageState extends State<HomePage> {
     // bookAppointment()
     // simulations()
     // progresstracking()
-    QuestionnairePage(),
-    ProgressTrackingPage(),
+    Qscreen(),
+    // ProgressTrackingPage(),
     ProfilePage(),
-    VideoPlayerScreen(),
+    VideoListScreen(),
   ];
 
   @override
@@ -48,14 +49,13 @@ class _HomePageState extends State<HomePage> {
         items: [
           FlashyTabBarItem(
             icon: Icon(Icons.groups, color: AppColors.white),
-            title: Text('Book an Appointment',
-                style: TextStyle(color: AppColors.white)),
+            title: Text('Q AND A', style: TextStyle(color: AppColors.white)),
           ),
-          FlashyTabBarItem(
-            icon: Icon(Icons.home, color: AppColors.white),
-            title: Text('Progress Tracking',
-                style: TextStyle(color: AppColors.white)),
-          ),
+          // FlashyTabBarItem(
+          //   icon: Icon(Icons.home, color: AppColors.white),
+          //   title: Text('Progress Tracking',
+          //       style: TextStyle(color: AppColors.white)),
+          // ),
           FlashyTabBarItem(
             icon: Icon(Icons.emoji_emotions, color: AppColors.white),
             title: Text('ChatBot', style: TextStyle(color: AppColors.white)),

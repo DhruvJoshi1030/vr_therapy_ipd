@@ -24,7 +24,7 @@ class _HomePageDState extends State<HomePageD> {
     AppointmentCheck(),
     NewSession(),
     ProfilePage(),
-    VideoPlayerScreen(),
+    VideoListScreen(),
   ];
 
   @override

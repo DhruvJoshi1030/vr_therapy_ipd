@@ -2,76 +2,73 @@ import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 void main() {
-  runApp(
-    MaterialApp(
-      home: VideoPlayerScreen(),
-    ),
-  );
+  runApp(MyApp());
 }
 
-class VideoPlayerScreen extends StatefulWidget {
+class MyApp extends StatelessWidget {
   @override
-  _VideoPlayerScreenState createState() => _VideoPlayerScreenState();
-}
-
-class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
-  late YoutubePlayerController _controller;
-  bool isVideoPlaying = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = YoutubePlayerController(
-      initialVideoId:
-          'Qvd-I7lTecI', // Replace with the correct YouTube video ID
-      flags: YoutubePlayerFlags(
-        autoPlay: false,
-        mute: false,
-      ),
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: VideoListScreen(),
     );
   }
+}
+
+class VideoListScreen extends StatelessWidget {
+  final List<String> videoUrls = [
+    'https://www.youtube.com/watch?v=Qvd-I7lTecI',
+    'https://www.youtube.com/watch?v=0NFxcNheoLc',
+    // Add more video URLs as needed
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Video Player'),
+        title: Text('YouTube Video List'),
       ),
-      body: Center(
-        child: YoutubePlayerBuilder(
-          player: YoutubePlayer(
-            controller: _controller,
-            showVideoProgressIndicator: true,
-            onReady: () {
-              // Video is ready to play
-            },
-          ),
-          builder: (context, player) {
-            return Column(
-              children: [
-                player,
-                isVideoPlaying
-                    ? Container()
-                    : ElevatedButton(
-                        onPressed: () {
-                          setState(() {
-                            isVideoPlaying = true;
-                            _controller.play();
-                          });
-                        },
-                        child: Text('Play Video'),
-                      ),
-              ],
-            );
-          },
-        ),
+      body: ListView.builder(
+        itemCount: videoUrls.length,
+        itemBuilder: (context, index) {
+          return VideoPlayerItem(videoUrl: videoUrls[index]);
+        },
       ),
     );
   }
+}
+
+class VideoPlayerItem extends StatelessWidget {
+  final String videoUrl;
+
+  VideoPlayerItem({required this.videoUrl});
 
   @override
-  void dispose() {
-    super.dispose();
-    _controller.dispose();
+  Widget build(BuildContext context) {
+    YoutubePlayerController _controller = YoutubePlayerController(
+      initialVideoId: YoutubePlayer.convertUrlToId(videoUrl) ?? '',
+      flags: YoutubePlayerFlags(
+        autoPlay: false,
+        mute: false,
+      ),
+    );
+
+    return Card(
+      margin: EdgeInsets.all(8.0),
+      child: Column(
+        children: [
+          YoutubePlayer(
+            controller: _controller,
+            showVideoProgressIndicator: true,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              'Video Title Here', 
+              style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
