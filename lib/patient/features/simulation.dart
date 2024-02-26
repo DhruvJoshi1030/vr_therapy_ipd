@@ -1,18 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-void main() {
-  runApp(MyApp());
-}
 
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: VideoListScreen(),
-    );
-  }
-}
 
 class VideoListScreen extends StatelessWidget {
   final List<String> videoUrls = [
@@ -24,6 +13,7 @@ class VideoListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xffF7EBE1),
       appBar: AppBar(
         title: Text('YouTube Video List'),
       ),

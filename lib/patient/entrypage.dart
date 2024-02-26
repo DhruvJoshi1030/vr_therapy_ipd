@@ -14,6 +14,7 @@ class _EntryPageState extends State<EntryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xffF7EBE1),
       appBar: AppBar(
         title: Text('VR THERAPY'),
       ),

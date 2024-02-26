@@ -38,6 +38,7 @@ class _HomePageDState extends State<HomePageD> {
       //   backgroundColor: AppColors.white,
       //   elevation: 0,
       // ),
+      backgroundColor: Color(0xffF7EBE1),
       body: _pages[_currentIndex],
       bottomNavigationBar: FlashyTabBar(
         // Use FlashyTabBar

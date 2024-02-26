@@ -24,6 +24,7 @@ class _ProgressTrackingPageState extends State<ProgressTrackingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xffF7EBE1),
       appBar: AppBar(
         title: Text('Progress Tracking'),
       ),

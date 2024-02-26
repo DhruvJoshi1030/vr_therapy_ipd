@@ -36,6 +36,7 @@ class _LoginPagePState extends State<LoginPageP> {
       appBar: AppBar(
         title: Text('Login'),
       ),
+      backgroundColor: Color(0xffF7EBE1),
       body: Center(
         child: Padding(
           padding: EdgeInsets.all(16.0),
@@ -58,6 +59,7 @@ class _LoginPagePState extends State<LoginPageP> {
               ),
               SizedBox(height: 20.0),
               ElevatedButton(
+                
                 onPressed: () {
                   final String email = _emailController.text.trim();
                   final String password = _passwordController.text.trim();

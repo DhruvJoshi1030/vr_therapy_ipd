@@ -34,6 +34,7 @@ class _RegistrationScreenPState extends State<RegistrationScreenP> {
       appBar: AppBar(
         title: Text('User Registration'),
       ),
+      backgroundColor: Color(0xffF7EBE1),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(

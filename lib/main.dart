@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:vr_therapy_ipd/design/introanimation/components/intro.dart';
 import 'package:vr_therapy_ipd/doctor/docdata.dart';
+import 'package:vr_therapy_ipd/cutom_ui/helptemp.dart';
 import 'package:vr_therapy_ipd/patient/entrypage.dart';
 import 'package:vr_therapy_ipd/patient/features/appointment/appointment.dart';
 import 'package:vr_therapy_ipd/patient/onboarding.dart';

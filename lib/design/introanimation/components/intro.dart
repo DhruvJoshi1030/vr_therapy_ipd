@@ -1,11 +1,13 @@
-
 import 'package:flutter/material.dart';
 import 'package:vr_therapy_ipd/design/introanimation/components/careview.dart';
+import 'package:vr_therapy_ipd/design/introanimation/components/centernext.dart';
 import 'package:vr_therapy_ipd/design/introanimation/components/mooddiary.dart';
 import 'package:vr_therapy_ipd/design/introanimation/components/relaxview.dart';
 import 'package:vr_therapy_ipd/design/introanimation/components/splashview.dart';
 import 'package:vr_therapy_ipd/design/introanimation/components/topbackview.dart';
 import 'package:vr_therapy_ipd/design/introanimation/components/welcomview.dart';
+import 'package:vr_therapy_ipd/patient/patient_login.dart';
+import 'package:vr_therapy_ipd/patient/register.dart';
 
 class IntroductionAnimationScreen extends StatefulWidget {
   const IntroductionAnimationScreen({Key? key}) : super(key: key);
@@ -61,10 +63,10 @@ class _IntroductionAnimationScreenState
               onSkipClick: _onSkipClick,
               animationController: _animationController!,
             ),
-            // CenterNextButton(
-            //   animationController: _animationController!,
-            //   onNextClick: _onNextClick,
-            // ),
+            CenterNextButton(
+              animationController: _animationController!,
+              onNextClick: _onNextClick,
+            ),
           ],
         ),
       ),
@@ -108,10 +110,12 @@ class _IntroductionAnimationScreenState
     } else if (_animationController!.value > 0.6 &&
         _animationController!.value <= 0.8) {
       _signUpClick();
-    }
+    } 
   }
 
   void _signUpClick() {
-    Navigator.pop(context);
+    Navigator.pushReplacement(context,
+        MaterialPageRoute(builder: (context) => RegistrationScreenP()));
   }
+
 }

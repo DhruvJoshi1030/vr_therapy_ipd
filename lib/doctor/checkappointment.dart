@@ -12,6 +12,7 @@ class _AppointmentCheckState extends State<AppointmentCheck> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xffF7EBE1),
       body: Column(
         children: [
           AppointmentCard(
