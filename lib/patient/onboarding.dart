@@ -6,7 +6,7 @@ import 'package:vr_therapy_ipd/patient/features/appointment/moveon.dart';
 import 'package:vr_therapy_ipd/patient/features/progresstracker.dart';
 import 'package:vr_therapy_ipd/patient/features/simulation.dart';
 import 'package:vr_therapy_ipd/patient/profile.dart';
-import 'package:vr_therapy_ipd/patient/questionnaire.dart';
+import 'package:vr_therapy_ipd/patient/questionnaire_claustrophobia.dart';
 
 class HomePage extends StatefulWidget {
   @override
