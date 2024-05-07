@@ -23,7 +23,8 @@ class _QuestionnairePageState extends State<QuestionnairePage>
       'options': ['Yes', 'No'],
     },
     {
-      'question': 'Did you experience physical symptoms such as sweating, trembling, or an increased heart rate during the VR simulation of enclosed spaces?',
+      'question':
+          'Did you experience physical symptoms such as sweating, trembling, or an increased heart rate during the VR simulation of enclosed spaces?',
       'options': ['Yes', 'No'],
     },
     {
@@ -42,7 +43,8 @@ class _QuestionnairePageState extends State<QuestionnairePage>
       'options': ['Yes', 'No'],
     },
     {
-      'question': 'Did you avoid watching the VR simulation again or express a reluctance to repeat the experience involving enclosed spaces?',
+      'question':
+          'Did you avoid watching the VR simulation again or express a reluctance to repeat the experience involving enclosed spaces?',
       'options': ['Yes', 'No'],
     },
     {
@@ -51,11 +53,13 @@ class _QuestionnairePageState extends State<QuestionnairePage>
       'options': ['Yes', 'No'],
     },
     {
-      'question': 'Did you find it challenging to engage in the VR simulation due to overwhelming fear or discomfort in confined spaces?',
+      'question':
+          'Did you find it challenging to engage in the VR simulation due to overwhelming fear or discomfort in confined spaces?',
       'options': ['Yes', 'No'],
     },
     {
-      'question': 'Were you able to complete the entire VR therapy session without the need to stop due to claustrophobic feelings?',
+      'question':
+          'Were you able to complete the entire VR therapy session without the need to stop due to claustrophobic feelings?',
       'options': ['Yes', 'No'],
     },
   ];
@@ -120,7 +124,7 @@ class _QuestionnairePageState extends State<QuestionnairePage>
     try {
       final response = await http.post(
         Uri.parse(
-            'https://5967-103-174-158-203.ngrok-free.app/predict'), // Replace with your API endpoint
+            'https://010e-2401-4900-517a-fbe1-b0ee-a1ca-499b-60d1.ngrok-free.app/predict'), // Replace with your API endpoint
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -217,7 +221,9 @@ class _QuestionnairePageState extends State<QuestionnairePage>
                 onPressed: _selectedAnswer != null ? _nextQuestion : null,
                 child: Text('Next'),
                 style: ElevatedButton.styleFrom(
-                  minimumSize: Size(double.infinity, 50), backgroundColor: _selectedAnswer != null ? Colors.blue : Colors.grey,
+                  minimumSize: Size(double.infinity, 50),
+                  backgroundColor:
+                      _selectedAnswer != null ? Colors.blue : Colors.grey,
                 ),
               ),
               SizedBox(height: 20),

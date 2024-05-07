@@ -24,7 +24,10 @@ class _HomePageDState extends State<HomePageD> {
     AppointmentCheck(),
     NewSession(),
     ProfilePage(),
-    VideoListScreen(),
+    VideoPlayerItem(
+      videoUrl:
+          'https://www.youtube.com/playlist?list=PLgUwDviBIf0oF6QL8m22w1hIDC1vJ_BHz',
+    ),
   ];
 
   @override

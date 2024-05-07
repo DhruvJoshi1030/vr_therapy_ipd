@@ -1,29 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
-
-class VideoListScreen extends StatelessWidget {
-  final List<String> videoUrls = [
-    'https://www.youtube.com/watch?v=Qvd-I7lTecI',
-    'https://www.youtube.com/watch?v=0NFxcNheoLc',
-    // Add more video URLs as needed
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Color(0xffF7EBE1),
-      appBar: AppBar(
-        title: Text('YouTube Video List'),
-      ),
-      body: ListView.builder(
-        itemCount: videoUrls.length,
-        itemBuilder: (context, index) {
-          return VideoPlayerItem(videoUrl: videoUrls[index]);
-        },
-      ),
-    );
-  }
-}
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'dart:async';
 
 class VideoPlayerItem extends StatefulWidget {
   final String videoUrl;
@@ -36,7 +15,8 @@ class VideoPlayerItem extends StatefulWidget {
 
 class _VideoPlayerItemState extends State<VideoPlayerItem> {
   late YoutubePlayerController _controller;
-  bool isPulseMeterRunning = false;
+  String arduinoData =
+      ''; // Variable to store Arduino data received from the server
 
   @override
   void initState() {
@@ -48,6 +28,11 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
         mute: false,
       ),
     );
+
+    // Start fetching Arduino data periodically
+    Timer.periodic(Duration(seconds: 5), (timer) {
+      startPulseMeter();
+    });
   }
 
   @override
@@ -56,12 +41,24 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
     super.dispose();
   }
 
-  void startPulseMeter() {
-    // Your pulse meter functionality here
-    setState(() {
-      isPulseMeterRunning = true;
-    });
-    print('Pulse meter started for video: ${widget.videoUrl}');
+  void startPulseMeter() async {
+    // Make HTTP request to your Flask API endpoint
+    final response =
+        await http.get(Uri.parse('http://127.0.0.1:5000/api/serial_data'));
+    if (response.statusCode == 200) {
+      // Parse JSON response
+      final data = jsonDecode(response.body);
+      final newData = data['data'];
+      // Update UI with Arduino data
+      setState(() {
+        arduinoData =
+            newData; // Update the UI state with the received Arduino data
+        print('Received Arduino data: $arduinoData');
+      });
+    } else {
+      // Handle error if API request fails
+      print('Failed to fetch Arduino data');
+    }
   }
 
   @override
@@ -87,7 +84,7 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
                 ),
                 SizedBox(width: 16.0),
                 Text(
-                  'Video Title Here',
+                  'Arduino Data: $arduinoData', // Display Arduino data in the UI
                   style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
                 ),
               ],

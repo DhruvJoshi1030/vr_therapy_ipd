@@ -1,4 +1,3 @@
-
 import 'package:flutter/widgets.dart';
 import 'package:vr_therapy_ipd/design/introanimation/components/intro.dart';
 import 'package:vr_therapy_ipd/patient/features/simulation.dart';
@@ -19,15 +18,24 @@ class HomeList {
     ),
     HomeList(
       imagePath: 'assets/hotel/hotel_booking.png',
-      navigateScreen: VideoListScreen(),
+      navigateScreen: VideoPlayerItem(
+        videoUrl:
+            'https://www.youtube.com/playlist?list=PLgUwDviBIf0oF6QL8m22w1hIDC1vJ_BHz',
+      ),
     ),
     HomeList(
       imagePath: 'assets/fitness_app/fitness_app.png',
-      navigateScreen: VideoListScreen(),
+      navigateScreen: VideoPlayerItem(
+        videoUrl:
+            'https://www.youtube.com/playlist?list=PLgUwDviBIf0oF6QL8m22w1hIDC1vJ_BHz',
+      ),
     ),
     HomeList(
       imagePath: 'assets/design_course/design_course.png',
-      navigateScreen: VideoListScreen(),
+      navigateScreen: VideoPlayerItem(
+        videoUrl:
+            'https://www.youtube.com/playlist?list=PLgUwDviBIf0oF6QL8m22w1hIDC1vJ_BHz',
+      ),
     ),
   ];
 }

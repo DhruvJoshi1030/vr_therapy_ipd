@@ -1,6 +1,6 @@
-
 import 'package:flutter/material.dart';
 import 'package:vr_therapy_ipd/patient/features/appointment/appointment.dart';
+
 class DoctorDataProvider extends ChangeNotifier {
   List<Doctor> doctors = [
     Doctor(name: 'Dr. Smith', specialization: 'Cardiologist'),

@@ -23,7 +23,10 @@ class _HomePageState extends State<HomePage> {
     Qscreen(),
     // ProgressTrackingPage(),
     ProfilePage(),
-    VideoListScreen(),
+    VideoPlayerItem(
+      videoUrl:
+          'https://www.youtube.com/playlist?list=PLgUwDviBIf0oF6QL8m22w1hIDC1vJ_BHz',
+    ),
   ];
 
   @override
