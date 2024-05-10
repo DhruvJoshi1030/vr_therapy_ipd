@@ -4,7 +4,7 @@ import 'package:vr_therapy_ipd/design/colors.dart';
 import 'package:vr_therapy_ipd/patient/features/appointment/appointment.dart';
 import 'package:vr_therapy_ipd/patient/features/appointment/moveon.dart';
 import 'package:vr_therapy_ipd/patient/features/progresstracker.dart';
-import 'package:vr_therapy_ipd/patient/features/simulation.dart';
+import 'package:vr_therapy_ipd/patient/features/simulationAcro.dart';
 import 'package:vr_therapy_ipd/patient/profile.dart';
 import 'package:vr_therapy_ipd/patient/questionnaire_claustrophobia.dart';
 
@@ -23,7 +23,7 @@ class _HomePageState extends State<HomePage> {
     Qscreen(),
     // ProgressTrackingPage(),
     ProfilePage(),
-    VideoPlayerItem(
+    VideoPlayerItema(
       videoUrl:
           'https://www.youtube.com/watch?v=3rLPQgMwpD4&list=PLFyjjoCMAPtzgITDreXNNkSWLKbd1wf51&index=21',
     ),

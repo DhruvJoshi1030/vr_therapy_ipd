@@ -19,6 +19,7 @@ dependencies:
   flutter_bluetooth_serial: ^0.4.0
   flutter_svg: ^2.0.9
   flutter_widget_from_html: ^0.14.9
+  google_fonts: ^4.0.4
   intl: ^0.18.1
   provider: ^6.0.5
   usb_serial: ^0.5.1
@@ -42,3 +43,10 @@ flutter:
     - assets/mood_dairy_image.png
     - assets/relax_image.png
     - assets/welcome.png
+    - assets/login_photo.png
+    - assets/clausto.jpeg
+    - assets/acrophoto.jpeg
+  fonts:
+    - family: CustomFont
+      fonts:
+        - asset: assets/PlusJakartaSans-Italic-VariableFont_wght.ttf

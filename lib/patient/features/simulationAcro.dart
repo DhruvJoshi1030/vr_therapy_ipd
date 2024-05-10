@@ -4,16 +4,16 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:async';
 
-class VideoPlayerItem extends StatefulWidget {
+class VideoPlayerItema extends StatefulWidget {
   final String videoUrl;
 
-  VideoPlayerItem({required this.videoUrl});
+  VideoPlayerItema({required this.videoUrl});
 
   @override
-  _VideoPlayerItemState createState() => _VideoPlayerItemState();
+  _VideoPlayerItemaState createState() => _VideoPlayerItemaState();
 }
 
-class _VideoPlayerItemState extends State<VideoPlayerItem> {
+class _VideoPlayerItemaState extends State<VideoPlayerItema> {
   late YoutubePlayerController _controller;
   String arduinoData =
       ''; // Variable to store Arduino data received from the server

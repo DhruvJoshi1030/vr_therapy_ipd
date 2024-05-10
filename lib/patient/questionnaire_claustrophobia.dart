@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:firebase_auth/firebase_auth.dart';
 
-class QuestionnairePage extends StatefulWidget {
+class QuestionnairePagec extends StatefulWidget {
   @override
-  _QuestionnairePageState createState() => _QuestionnairePageState();
+  _QuestionnairePagecState createState() => _QuestionnairePagecState();
 }
 
-class _QuestionnairePageState extends State<QuestionnairePage>
+class _QuestionnairePagecState extends State<QuestionnairePagec>
     with SingleTickerProviderStateMixin {
   int _currentQuestionIndex = 0;
   final List<Map<String, dynamic>> _questions = [
@@ -163,79 +163,104 @@ class _QuestionnairePageState extends State<QuestionnairePage>
           child: Icon(Icons.arrow_back),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: FadeTransition(
-          opacity: _animation,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              SizedBox(height: 20),
-              Text(
-                _questions[_currentQuestionIndex]['question'],
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 20),
-              Column(
-                children: _questions[_currentQuestionIndex]['options']
-                    .map<Widget>((option) => InkWell(
-                          onTap: () {
-                            setState(() {
-                              _selectedAnswer = option;
-                            });
-                          },
-                          child: Container(
-                            padding: EdgeInsets.symmetric(vertical: 10),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: _selectedAnswer == option
-                                  ? Colors.blue.withOpacity(0.5)
-                                  : Colors.transparent,
-                              border: Border.all(
-                                color: _selectedAnswer == option
-                                    ? Colors.blue
-                                    : Colors.grey,
-                                width: 2,
-                              ),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 16.0),
-                                  child: Text(
-                                    option,
-                                    style: TextStyle(fontSize: 16),
+      body: Column(
+        children: <Widget>[
+          LinearProgressIndicator(
+            value: (_currentQuestionIndex + 1) / _questions.length,
+            backgroundColor: Colors.grey[300],
+            valueColor: AlwaysStoppedAnimation<Color>(
+                Color(0xFFEBFF00)), // Yellow progress bar
+          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: FadeTransition(
+                opacity: _animation,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    SizedBox(height: 20),
+                    Text(
+                      _questions[_currentQuestionIndex]['question'],
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'CustomFont', // Apply custom font
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    Column(
+                      children: _questions[_currentQuestionIndex]['options']
+                          .map<Widget>((option) => InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    _selectedAnswer = option;
+                                  });
+                                },
+                                child: Container(
+                                  padding: EdgeInsets.symmetric(vertical: 10),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: _selectedAnswer == option
+                                        ? Colors.blue.withOpacity(0.5)
+                                        : Colors.transparent,
+                                    border: Border.all(
+                                      color: _selectedAnswer == option
+                                          ? Colors.blue
+                                          : Colors.grey,
+                                      width: 2,
+                                    ),
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 16.0),
+                                        child: Text(
+                                          option,
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontFamily:
+                                                'CustomFont', // Apply custom font
+                                          ),
+                                        ),
+                                      ),
+                                      if (_selectedAnswer == option)
+                                        Icon(Icons.check, color: Colors.blue),
+                                    ],
                                   ),
                                 ),
-                                if (_selectedAnswer == option)
-                                  Icon(Icons.check, color: Colors.blue),
-                              ],
-                            ),
-                          ),
-                        ))
-                    .toList(),
-              ),
-              SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: _selectedAnswer != null ? _nextQuestion : null,
-                child: Text('Next'),
-                style: ElevatedButton.styleFrom(
-                  minimumSize: Size(double.infinity, 50),
-                  backgroundColor:
-                      _selectedAnswer != null ? Colors.blue : Colors.grey,
+                              ))
+                          .toList(),
+                    ),
+                    SizedBox(height: 20),
+                    ElevatedButton(
+                      onPressed:
+                          _selectedAnswer != null ? _nextQuestion : null,
+                      child: Text('Next'),
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: Size(double.infinity, 50),
+                        backgroundColor: _selectedAnswer != null
+                            ? Colors.blue
+                            : Colors.grey,
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    if (responseBody != null) ...[
+                      Text(
+                        'Response Body: $responseBody',
+                        style: TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ],
                 ),
               ),
-              SizedBox(height: 20),
-              if (responseBody != null) ...[
-                Text(
-                  'Response Body: $responseBody',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                ),
-              ],
-            ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }

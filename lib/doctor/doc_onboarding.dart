@@ -5,7 +5,7 @@ import 'package:vr_therapy_ipd/design/colors.dart';
 import 'package:vr_therapy_ipd/doctor/doctor_session.dart';
 import 'package:vr_therapy_ipd/patient/features/appointment/appointment.dart';
 import 'package:vr_therapy_ipd/patient/features/progresstracker.dart';
-import 'package:vr_therapy_ipd/patient/features/simulation.dart';
+import 'package:vr_therapy_ipd/patient/features/simulationAcro.dart';
 import 'package:vr_therapy_ipd/patient/profile.dart';
 
 class HomePageD extends StatefulWidget {
@@ -24,7 +24,7 @@ class _HomePageDState extends State<HomePageD> {
     AppointmentCheck(),
     NewSession(),
     ProfilePage(),
-    VideoPlayerItem(
+    VideoPlayerItema(
       videoUrl:
           'https://www.youtube.com/watch?v=3rLPQgMwpD4&list=PLFyjjoCMAPtzgITDreXNNkSWLKbd1wf51&index=21',
     ),

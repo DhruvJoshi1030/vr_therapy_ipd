@@ -7,10 +7,11 @@ import 'package:vr_therapy_ipd/doctor/docdata.dart';
 import 'package:vr_therapy_ipd/cutom_ui/helptemp.dart';
 import 'package:vr_therapy_ipd/patient/entrypage.dart';
 import 'package:vr_therapy_ipd/patient/features/appointment/appointment.dart';
+import 'package:vr_therapy_ipd/patient/features/appointment/moveon.dart';
 import 'package:vr_therapy_ipd/patient/onboarding.dart';
 import 'package:vr_therapy_ipd/patient/patient_login.dart';
 import 'package:vr_therapy_ipd/patient/features/progresstracker.dart';
-import 'package:vr_therapy_ipd/patient/features/simulation.dart';
+import 'package:vr_therapy_ipd/patient/features/simulationAcro.dart';
 import 'package:vr_therapy_ipd/firebase_options.dart';
 import 'package:vr_therapy_ipd/patient/questionarre_acrophobia.dart';
 import 'package:vr_therapy_ipd/patient/questionnaire_claustrophobia.dart';
@@ -33,7 +34,7 @@ class MainApp extends StatelessWidget {
     return ChangeNotifierProvider<DoctorDataProvider>(
       create: (context) => DoctorDataProvider(),
       child: MaterialApp(
-        home: HomePage(),
+        home: Qscreen(),
         // VideoPlayerItem(
         //   videoUrl:
         //       'https://www.youtube.com/playlist?list=PLgUwDviBIf0oF6QL8m22w1hIDC1vJ_BHz',

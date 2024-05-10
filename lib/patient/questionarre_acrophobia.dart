@@ -166,78 +166,110 @@ class _QuestionnairePageaState extends State<QuestionnairePagea>
           child: Icon(Icons.arrow_back),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: FadeTransition(
-          opacity: _animation,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              SizedBox(height: 20),
-              Text(
-                _questions[_currentQuestionIndex]['question'],
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 20),
-              Column(
-                children: _questions[_currentQuestionIndex]['options']
-                    .map<Widget>((option) => InkWell(
-                          onTap: () {
-                            setState(() {
-                              _selectedAnswer = option;
-                            });
-                          },
-                          child: Container(
-                            padding: EdgeInsets.symmetric(vertical: 10),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: _selectedAnswer == option
-                                  ? Colors.blue.withOpacity(0.5)
-                                  : Colors.transparent,
-                              border: Border.all(
-                                color: _selectedAnswer == option
-                                    ? Colors.blue
-                                    : Colors.grey,
-                                width: 2,
-                              ),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 16.0),
-                                  child: Text(
-                                    option,
-                                    style: TextStyle(fontSize: 16),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          LinearProgressIndicator(
+            value: (_currentQuestionIndex + 1) / _questions.length,
+            backgroundColor: Colors.grey[300],
+            valueColor: AlwaysStoppedAnimation<Color>(
+                Color(0xFFEBFF00)), // Yellow progress bar
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: FadeTransition(
+              opacity: _animation,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  SizedBox(height: 20),
+                  Text(
+                    _questions[_currentQuestionIndex]['question'],
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'CustomFont', // Apply custom font
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  Column(
+                    children: _questions[_currentQuestionIndex]['options']
+                        .map<Widget>((option) => InkWell(
+                              onTap: () {
+                                setState(() {
+                                  _selectedAnswer = option;
+                                });
+                              },
+                              child: Container(
+                                padding: EdgeInsets.symmetric(vertical: 10),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: _selectedAnswer == option
+                                      ? Colors.blue.withOpacity(0.5)
+                                      : Colors.transparent,
+                                  border: Border.all(
+                                    color: _selectedAnswer == option
+                                        ? Colors.blue
+                                        : Colors.grey,
+                                    width: 2,
                                   ),
                                 ),
-                                if (_selectedAnswer == option)
-                                  Icon(Icons.check, color: Colors.blue),
-                              ],
-                            ),
-                          ),
-                        ))
-                    .toList(),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Padding(
+                                      padding:
+                                          const EdgeInsets.only(left: 16.0),
+                                      child: Text(
+                                        option,
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontFamily:
+                                              'CustomFont', // Apply custom font
+                                        ),
+                                      ),
+                                    ),
+                                    if (_selectedAnswer == option)
+                                      Icon(Icons.check, color: Colors.blue),
+                                  ],
+                                ),
+                              ),
+                            ))
+                        .toList(),
+                  ),
+                  SizedBox(height: 20),
+                  ElevatedButton(
+                    onPressed: _selectedAnswer != null ? _nextQuestion : null,
+                    child: Text(
+                      'Next',
+                      style: TextStyle(
+                        color: Colors.black, // Change text color to black
+                        fontFamily: 'CustomFont', // Apply custom font
+                      ),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      minimumSize: Size(double.infinity, 50),
+                      backgroundColor: _selectedAnswer != null
+                          ? Color(0xFFEBFF00)
+                          : Colors.grey, // Yellow button color
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  if (phobiaPrediction != null)
+                    Text(
+                      'Phobia Prediction: $phobiaPrediction',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'CustomFont', // Apply custom font
+                      ),
+                    ),
+                ],
               ),
-              SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: _selectedAnswer != null ? _nextQuestion : null,
-                child: Text('Next'),
-                style: ElevatedButton.styleFrom(
-                  minimumSize: Size(double.infinity, 50),
-                  backgroundColor:
-                      _selectedAnswer != null ? Colors.blue : Colors.grey,
-                ),
-              ),
-              SizedBox(height: 20),
-              if (phobiaPrediction != null)
-                Text(
-                  'Phobia Prediction: $phobiaPrediction',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                ),
-            ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }
