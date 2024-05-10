@@ -72,7 +72,7 @@ class _QuestionnairePageaState extends State<QuestionnairePagea>
   String? _selectedAnswer;
   String userEmail = "";
   List<String?> selectedAnswers = [];
-  String? phobiaPrediction;
+  String? phobiaPrediction = 'Yes';
 
   late AnimationController _animationController;
   late Animation<double> _animation;
@@ -270,7 +270,7 @@ class _QuestionnairePageaState extends State<QuestionnairePagea>
                     ),
                   ),
                   SizedBox(height: 20),
-                  if (phobiaPrediction != null)
+                  if (_nextQuestion == null)
                     Text(
                       'Phobia Prediction: $phobiaPrediction',
                       style: TextStyle(

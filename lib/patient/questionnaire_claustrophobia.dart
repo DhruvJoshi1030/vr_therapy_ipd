@@ -73,7 +73,7 @@ class _QuestionnairePagecState extends State<QuestionnairePagec>
   String? _selectedAnswer;
   String userEmail = "";
   List<String?> selectedAnswers = [];
-  String? responseBody;
+  String? responseBody = 'Yes';
 
   late AnimationController _animationController;
   late Animation<double> _animation;
@@ -256,7 +256,7 @@ class _QuestionnairePagecState extends State<QuestionnairePagec>
                       ),
                     ),
                     SizedBox(height: 20),
-                    if (responseBody != null) ...[
+                    if (_nextQuestion == null) ...[
                       Text(
                         'Response Body: $responseBody',
                         style: TextStyle(

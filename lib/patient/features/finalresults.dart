@@ -15,9 +15,26 @@ class FinalDetect extends StatefulWidget {
 }
 
 class _FinalDetectState extends State<FinalDetect> {
+  String determinePhobiaLevel() {
+    final int simulationValue =
+        int.tryParse(widget.simulationValue as String) ?? 0;
+    final String questionnaireValue = widget.questionnaireValue;
+
+    if (simulationValue > 100) {
+      if (questionnaireValue == 'Yes') {
+        return 'You have a phobia';
+      } else {
+        return 'Mild phobia';
+      }
+    } else {
+      return 'No phobia';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    // Access simulationValue and questionnaireValue using widget.simulationValue and widget.questionnaireValue
+    String phobiaLevel = determinePhobiaLevel();
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Final Detection'),
@@ -33,6 +50,11 @@ class _FinalDetectState extends State<FinalDetect> {
             SizedBox(height: 20),
             Text(
               'Questionnaire Value: ${widget.questionnaireValue}',
+              style: TextStyle(fontSize: 20),
+            ),
+            SizedBox(height: 20),
+            Text(
+              'Phobia Level: $phobiaLevel',
               style: TextStyle(fontSize: 20),
             ),
           ],
