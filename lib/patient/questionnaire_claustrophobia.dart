@@ -2,8 +2,13 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:vr_therapy_ipd/patient/features/finalresults.dart';
 
 class QuestionnairePagec extends StatefulWidget {
+  final String phobiaS;
+
+  QuestionnairePagec({required this.phobiaS});
+
   @override
   _QuestionnairePagecState createState() => _QuestionnairePagecState();
 }
@@ -110,13 +115,6 @@ class _QuestionnairePagecState extends State<QuestionnairePagec>
 
         // Send selected answers to the API
         postData(selectedAnswers);
-
-        final user = FirebaseAuth.instance.currentUser;
-        if (user != null) {
-          setState(() {
-            userEmail = user.email!;
-          });
-        }
       }
     });
   }
@@ -125,7 +123,7 @@ class _QuestionnairePagecState extends State<QuestionnairePagec>
     try {
       final response = await http.post(
         Uri.parse(
-            'https://010e-2401-4900-517a-fbe1-b0ee-a1ca-499b-60d1.ngrok-free.app/predict'), // Replace with your API endpoint
+            'https://a31e-2401-4900-8816-4107-f01c-9b56-61d6-da51.ngrok-free.app/predict'), // Replace with your API endpoint
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -142,6 +140,17 @@ class _QuestionnairePagecState extends State<QuestionnairePagec>
         setState(() {
           responseBody = response.body;
         });
+
+        // Navigate to FinalDetect page with responseBody as parameter
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => FinalDetect(
+              simulationValue: widget.phobiaS,
+              questionnaireValue: responseBody!,
+            ),
+          ),
+        );
       } else {
         // Handle error response
         print('Failed to post data: ${response.statusCode}');
@@ -238,14 +247,12 @@ class _QuestionnairePagecState extends State<QuestionnairePagec>
                     ),
                     SizedBox(height: 20),
                     ElevatedButton(
-                      onPressed:
-                          _selectedAnswer != null ? _nextQuestion : null,
+                      onPressed: _selectedAnswer != null ? _nextQuestion : null,
                       child: Text('Next'),
                       style: ElevatedButton.styleFrom(
                         minimumSize: Size(double.infinity, 50),
-                        backgroundColor: _selectedAnswer != null
-                            ? Colors.blue
-                            : Colors.grey,
+                        backgroundColor:
+                            _selectedAnswer != null ? Colors.blue : Colors.grey,
                       ),
                     ),
                     SizedBox(height: 20),

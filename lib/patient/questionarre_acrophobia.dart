@@ -2,8 +2,12 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:vr_therapy_ipd/patient/features/finalresults.dart';
 
 class QuestionnairePagea extends StatefulWidget {
+  final String phobiaA;
+
+  QuestionnairePagea({required this.phobiaA});
   @override
   _QuestionnairePageaState createState() => _QuestionnairePageaState();
 }
@@ -107,14 +111,23 @@ class _QuestionnairePageaState extends State<QuestionnairePagea>
         print('Selected Answers: $selectedAnswers'); // Print selected answers
 
         // Send selected answers to the API
+        print("hi");
         postData(selectedAnswers);
-
+        print(phobiaPrediction);
         final user = FirebaseAuth.instance.currentUser;
         if (user != null) {
           setState(() {
             userEmail = user.email!;
           });
         }
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => FinalDetect(
+                    simulationValue: widget.phobiaA,
+                    questionnaireValue: phobiaPrediction!,
+                  )),
+        );
       }
     });
     if (_currentQuestionIndex < _questions.length - 1) {
@@ -142,11 +155,8 @@ class _QuestionnairePageaState extends State<QuestionnairePagea>
         // Handle successful response
         print('Data posted successfully');
         print('Response: ${response.body}');
-
-        // Parse JSON response to get phobia prediction
-        Map<String, dynamic> jsonResponse = jsonDecode(response.body);
         setState(() {
-          phobiaPrediction = jsonResponse['phobia_prediction'];
+          phobiaPrediction = response.body;
         });
       } else {
         // Handle error response

@@ -29,7 +29,7 @@ class StyleCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: SizedBox(
-        height: 100,
+        height: 105,
         width: double.infinity,
         child: Padding(
           padding: EdgeInsets.symmetric(vertical: 5, horizontal: 20),
@@ -41,7 +41,10 @@ class StyleCard extends StatelessWidget {
                 center: isOrg == true
                     ? Alignment.centerRight
                     : Alignment.bottomRight,
-                colors: [AppColors.primaryLight, bgColor ?? AppColors.secondary],
+                colors: [
+                  AppColors.primaryLight,
+                  bgColor ?? AppColors.secondary
+                ],
               ),
             ),
             child: Padding(
@@ -57,11 +60,10 @@ class StyleCard extends StatelessWidget {
                       Text(
                         title,
                         style: TextStyle(
-                          fontFamily: 'Poppins',
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
-                          color: textColor
-                        ),
+                            fontFamily: 'Poppins',
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                            color: textColor),
                       ),
                       SizedBox(height: 8),
                       if (description != null)

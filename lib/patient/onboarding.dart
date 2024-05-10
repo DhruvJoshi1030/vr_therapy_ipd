@@ -49,11 +49,11 @@ class _HomePageState extends State<HomePage> {
         onItemSelected: (index) => setState(() {
           _currentIndex = index;
         }),
-        backgroundColor: AppColors.secondary, // Set background color
+        backgroundColor: Color(0xFFEBFF00), // Set background color
         items: [
           FlashyTabBarItem(
-            icon: Icon(Icons.groups, color: AppColors.white),
-            title: Text('Q AND A', style: TextStyle(color: AppColors.white)),
+            icon: Icon(Icons.groups, color: AppColors.black),
+            title: Text('Q AND A', style: TextStyle(color: AppColors.black)),
           ),
           // FlashyTabBarItem(
           //   icon: Icon(Icons.home, color: AppColors.white),
@@ -61,13 +61,13 @@ class _HomePageState extends State<HomePage> {
           //       style: TextStyle(color: AppColors.white)),
           // ),
           FlashyTabBarItem(
-            icon: Icon(Icons.emoji_emotions, color: AppColors.white),
-            title: Text('ChatBot', style: TextStyle(color: AppColors.white)),
+            icon: Icon(Icons.emoji_emotions, color: AppColors.black),
+            title: Text('ChatBot', style: TextStyle(color: AppColors.black)),
           ),
           FlashyTabBarItem(
-            icon: Icon(Icons.more_horiz, color: AppColors.white),
+            icon: Icon(Icons.more_horiz, color: AppColors.black),
             title:
-                Text('Simulations', style: TextStyle(color: AppColors.white)),
+                Text('Simulations', style: TextStyle(color: AppColors.black)),
           ),
         ],
       ),

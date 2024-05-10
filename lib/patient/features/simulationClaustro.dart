@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:vr_therapy_ipd/patient/questionarre_acrophobia.dart';
+import 'package:vr_therapy_ipd/patient/questionnaire_claustrophobia.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -17,6 +19,10 @@ class _VideoPlayerItemcState extends State<VideoPlayerItemc> {
   late YoutubePlayerController _controller;
   String arduinoData =
       ''; // Variable to store Arduino data received from the server
+  bool thresholdExceeded = false;
+  bool pagePushed = false; // Track if the page has been pushed
+  static const int thresholdValue = 100; // Adjust the threshold value as needed
+  String phobia = "No";
 
   @override
   void initState() {
@@ -30,7 +36,7 @@ class _VideoPlayerItemcState extends State<VideoPlayerItemc> {
     );
 
     // Start fetching Arduino data periodically
-    Timer.periodic(const Duration(seconds: 5), (timer) {
+    Timer.periodic(const Duration(seconds: 1), (timer) {
       startPulseMeter();
     });
   }
@@ -45,15 +51,36 @@ class _VideoPlayerItemcState extends State<VideoPlayerItemc> {
     try {
       // Make HTTP request to your Flask API endpoint
       final response =
-          await http.get(Uri.parse('http://127.0.0.1:5000/api/serial_data'));
+          await http.get(Uri.parse('http://192.168.1.9:5000/api/serial_data'));
       if (response.statusCode == 200) {
         // Parse JSON response
-        final data = jsonDecode(response.body);
-        final newData = data['data'];
+        final data = jsonDecode(response.body.toString());
+        final newData = int.parse(data['data']);
+
+        // Check if heartbeat exceeds threshold
+        if (newData > thresholdValue && !pagePushed) {
+          setState(() {
+            thresholdExceeded = true;
+            phobia = "Yes";
+            pagePushed = true; // Set pagePushed to true
+          });
+          // Pause the video
+          _controller.pause();
+          // Move to separate screen
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => QuestionnairePagec(
+                      phobiaS: phobia,
+                    )),
+          );
+          return;
+        }
+
         // Update UI with Arduino data
         setState(() {
-          arduinoData = newData
-              .toString(); // Update the UI state with the received Arduino data
+          arduinoData = newData.toString();
+          // Update the UI state with the received Arduino data
           print('Received Arduino data: $arduinoData');
         });
       } else {
