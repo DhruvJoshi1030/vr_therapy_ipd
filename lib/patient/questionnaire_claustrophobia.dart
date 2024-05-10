@@ -12,6 +12,7 @@ class _QuestionnairePagecState extends State<QuestionnairePagec>
     with SingleTickerProviderStateMixin {
   int _currentQuestionIndex = 0;
   final List<Map<String, dynamic>> _questions = [
+    // Questionnaire data...
     {
       'question':
           'Did you feel a strong sense of fear or anxiety during the VR simulation involving enclosed spaces like a lift or mining environment?yes/no',
@@ -85,7 +86,7 @@ class _QuestionnairePagecState extends State<QuestionnairePagec>
         curve: Curves.easeInOut,
       ),
     );
-    _animationController.forward();
+    _animationController.forward(); // Start animation initially
   }
 
   @override
@@ -100,6 +101,8 @@ class _QuestionnairePagecState extends State<QuestionnairePagec>
         _currentQuestionIndex++;
         selectedAnswers.add(_selectedAnswer);
         _selectedAnswer = null;
+        _animationController.reset(); // Reset animation for next question
+        _animationController.forward(); // Start animation for next question
       } else {
         // User has completed the questionnaire
         selectedAnswers.add(_selectedAnswer);
@@ -116,8 +119,6 @@ class _QuestionnairePagecState extends State<QuestionnairePagec>
         }
       }
     });
-    _animationController.reset();
-    _animationController.forward();
   }
 
   Future<void> postData(List<String?> selectedAnswers) async {
