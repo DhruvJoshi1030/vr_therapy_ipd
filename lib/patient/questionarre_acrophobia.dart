@@ -12,6 +12,7 @@ class _QuestionnairePageaState extends State<QuestionnairePagea>
     with SingleTickerProviderStateMixin {
   int _currentQuestionIndex = 0;
   final List<Map<String, dynamic>> _questions = [
+    // Questionnaire data...
     {
       'question':
           'Did you feel a strong sense of fear or anxiety during the VR simulation involving heights or rollercoasters?',
@@ -116,8 +117,11 @@ class _QuestionnairePageaState extends State<QuestionnairePagea>
         }
       }
     });
-    _animationController.reset();
-    _animationController.forward();
+    if (_currentQuestionIndex < _questions.length - 1) {
+      // Reset and start animation if not the last question
+      _animationController.reset();
+      _animationController.forward();
+    }
   }
 
   Future<void> postData(List<String?> selectedAnswers) async {

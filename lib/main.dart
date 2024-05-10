@@ -33,7 +33,7 @@ class MainApp extends StatelessWidget {
     return ChangeNotifierProvider<DoctorDataProvider>(
       create: (context) => DoctorDataProvider(),
       child: MaterialApp(
-        home: HomePage(),
+        home: IntroductionAnimationScreen(),
         // VideoPlayerItem(
         //   videoUrl:
         //       'https://www.youtube.com/playlist?list=PLgUwDviBIf0oF6QL8m22w1hIDC1vJ_BHz',
