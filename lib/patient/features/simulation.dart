@@ -23,14 +23,14 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
     super.initState();
     _controller = YoutubePlayerController(
       initialVideoId: YoutubePlayer.convertUrlToId(widget.videoUrl) ?? '',
-      flags: YoutubePlayerFlags(
+      flags: const YoutubePlayerFlags(
         autoPlay: false,
         mute: false,
       ),
     );
 
     // Start fetching Arduino data periodically
-    Timer.periodic(Duration(seconds: 5), (timer) {
+    Timer.periodic(const Duration(seconds: 5), (timer) {
       startPulseMeter();
     });
   }
@@ -41,23 +41,28 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
     super.dispose();
   }
 
-  void startPulseMeter() async {
-    // Make HTTP request to your Flask API endpoint
-    final response =
-        await http.get(Uri.parse('http://127.0.0.1:5000/api/serial_data'));
-    if (response.statusCode == 200) {
-      // Parse JSON response
-      final data = jsonDecode(response.body);
-      final newData = data['data'];
-      // Update UI with Arduino data
-      setState(() {
-        arduinoData =
-            newData; // Update the UI state with the received Arduino data
-        print('Received Arduino data: $arduinoData');
-      });
-    } else {
-      // Handle error if API request fails
-      print('Failed to fetch Arduino data');
+  Future<void> startPulseMeter() async {
+    try {
+      // Make HTTP request to your Flask API endpoint
+      final response =
+          await http.get(Uri.parse('http://127.0.0.1:5000/api/serial_data'));
+      if (response.statusCode == 200) {
+        // Parse JSON response
+        final data = jsonDecode(response.body);
+        final newData = data['data'];
+        // Update UI with Arduino data
+        setState(() {
+          arduinoData = newData
+              .toString(); // Update the UI state with the received Arduino data
+          print('Received Arduino data: $arduinoData');
+        });
+      } else {
+        // Handle error if API request fails
+        print('Failed to fetch Arduino data: ${response.statusCode}');
+      }
+    } catch (e) {
+      // Handle network or other errors
+      print('Error fetching Arduino data: $e');
     }
   }
 
@@ -67,9 +72,11 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
       margin: EdgeInsets.all(8.0),
       child: Column(
         children: [
-          YoutubePlayer(
-            controller: _controller,
-            showVideoProgressIndicator: true,
+          Expanded(
+            child: YoutubePlayer(
+              controller: _controller,
+              showVideoProgressIndicator: true,
+            ),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),

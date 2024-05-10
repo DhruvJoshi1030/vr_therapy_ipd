@@ -26,7 +26,7 @@ class _HomePageDState extends State<HomePageD> {
     ProfilePage(),
     VideoPlayerItem(
       videoUrl:
-          'https://www.youtube.com/playlist?list=PLgUwDviBIf0oF6QL8m22w1hIDC1vJ_BHz',
+          'https://www.youtube.com/watch?v=3rLPQgMwpD4&list=PLFyjjoCMAPtzgITDreXNNkSWLKbd1wf51&index=21',
     ),
   ];
 
